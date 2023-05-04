@@ -1,0 +1,14 @@
+/**
+* This filter only works when we need to remvoe specific fields from the checkout page
+**/
+
+add_filter( 'woocommerce_billing_fields', 'remove_checkout_form_fields', 10, 1 );
+
+function remove_checkout_form_fields( $fields ) {
+
+unset( $fields['billing_company'] );
+unset( $fields['billing_address_2'] );
+
+return $fields;
+
+}
