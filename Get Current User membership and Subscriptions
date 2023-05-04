@@ -1,0 +1,33 @@
+/**
+* Get Current User membership and Subscriptions
+**/
+
+function my_custom_function_12() {
+  // Check if the user is logged in
+  if ( is_user_logged_in() ) {
+    // Get the current user's ID
+    $user_id = get_current_user_id();
+    // Get the user's membership plan
+    $memberships = wc_memberships_get_user_memberships( $user_id );
+    // Output the user's membership data
+    echo '<h2>My Memberships</h2>';
+    echo '<ul>';
+    foreach ( $memberships as $membership ) {
+      echo '<li>' . $membership->get_plan()->get_name() . '</li>';
+    }
+    echo '</ul>';
+    // Get the user's subscriptions
+    $subscriptions = wcs_get_users_subscriptions( $user_id );
+    // Output the user's subscription data
+    echo '<h2>My Subscriptions</h2>';
+    echo '<ul>';
+    foreach ( $subscriptions as $subscription ) {
+      echo '<li>' . $subscription->get_product()->get_name() . '</li>';
+    }
+    echo '</ul>';
+  } else {
+    echo '<p>You need to be logged in to view your membership and subscription data.</p>';
+  }
+}
+
+add_shortcode( 'my_membership_subscription_data', 'my_custom_function_12' );
