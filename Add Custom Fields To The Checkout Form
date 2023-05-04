@@ -1,0 +1,14 @@
+/**
+ * Add custom field to checkout form
+ */
+function my_custom_function_9( $fields ) {
+  $fields['billing']['billing_custom_field'] = array(
+    'label' => __( 'Custom Field', 'woocommerce' ),
+    'required' => true,
+    'class' => array( 'form-row-wide' ),
+    'clear' => true,
+    'priority' => 50
+  );
+  return $fields;
+}
+add_filter( 'woocommerce_checkout_fields', 'my_custom_function_9' );
