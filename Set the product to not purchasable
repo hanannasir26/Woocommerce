@@ -1,0 +1,12 @@
+/**
+* This hook checks if the current customer has already purchased the product and sets it to not purchasable if they have.
+**/
+
+function my_custom_function_11( $purchasable, $product ) {
+  // Check if the customer has purchased the product
+  if ( wc_customer_bought_product( wp_get_current_user()->user_email, get_current_user_id(), $product->get_id() ) ) {
+    $purchasable = false; // Set the product to not purchasable
+  }
+  return $purchasable;
+}
+add_filter( 'woocommerce_is_purchasable', 'my_custom_function_11', 10, 2 );
