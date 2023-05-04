@@ -1,0 +1,17 @@
+/**
+ * Add custom tab to product page
+ **/
+ 
+function my_custom_function_5( $tabs ) {
+  $tabs['custom_tab'] = array(
+    'title'    => __( 'Custom Tab', 'woocommerce' ),
+    'priority' => 50,
+    'callback' => 'my_custom_tab_content'
+  );
+  return $tabs;
+}
+add_filter( 'woocommerce_product_tabs', 'my_custom_function_5' );
+ 
+function my_custom_tab_content() {
+  echo '<h2>Custom Tab Content</h2>';
+}
